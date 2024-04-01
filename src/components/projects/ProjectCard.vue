@@ -5,7 +5,7 @@
     props: {project: Object},    
     computed: {
         abstract(){
-            const abstract = this.project.description.slice(0, 200);
+            const abstract = this.project.description.slice(0, 250);
             return abstract + '...';
         },
         pubblicationDate(){
@@ -30,7 +30,8 @@
             <div class="card-header">
                 <h2>{{ project.title }}</h2>
             </div>
-            <div class="card-body">
+            <div class="card-body clearfix">
+                <img v-if="project.image" :src="project.image" :alt="project.title" class="img-fluid float-start">
                 <p>{{abstract}}</p>
             </div>
             <div class="card-footer d-flex justify-content-between">
