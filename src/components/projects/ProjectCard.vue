@@ -2,7 +2,24 @@
 <script>
   export default{
     name: 'ProjectCard',
-    props: {project: Object}    
+    props: {project: Object},    
+    computed: {
+        abstract(){
+            const abstract = this.project.description.slice(0, 200);
+            return abstract + '...';
+        },
+        pubblicationDate(){
+            const date = new Date(this.project.created_at);
+
+            let day = date.getDate();
+            let month = date.getMonth() + 1;
+            const year = date.getFullYear();
+
+            if(day <10) day = '0' + day;
+            if(month <10) month = '0' + month;
+            return `${day}/${month}/${year}`;
+        }
+    }
   };
 </script>
 
@@ -14,11 +31,11 @@
                 <h2>{{ project.title }}</h2>
             </div>
             <div class="card-body">
-                <p>{{ project.description }}</p>
+                <p>{{abstract}}</p>
             </div>
             <div class="card-footer d-flex justify-content-between">
                 <small><strong>Status:</strong> {{ project.status }}</small>
-                <small><strong>Creato il:</strong> {{ project.created_at }}</small>
+                <small><strong>Creato il:</strong> {{ pubblicationDate }}</small>
             </div>
         </div>
     </section>
