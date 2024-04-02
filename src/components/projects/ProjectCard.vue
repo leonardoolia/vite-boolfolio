@@ -33,7 +33,9 @@
             </div>
             <div class="card-body clearfix">
                 <img v-if="project.image" :src="project.image" :alt="project.title" class="img-fluid float-start">
-                <p>{{abstract}}</p>
+
+                <!-- Se siamo nel dettaglio mi mostra l'intera descrizione del progetto, altrimenti mi mostra l'abstract -->
+                <p>{{isDetail ? project.description : abstract}}</p>
             </div>
             <div class="card-footer d-flex justify-content-between">
                 <small><strong>Status:</strong> {{ project.status }}</small>
