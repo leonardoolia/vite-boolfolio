@@ -2,7 +2,7 @@
 <script>
   export default{
     name: 'ProjectCard',
-    props: {project: Object},    
+    props: {project: Object, isDetail: Boolean},    
     computed: {
         abstract(){
             const abstract = this.project.description.slice(0, 250);
@@ -29,7 +29,7 @@
         <div class="card mb-5">
             <div class="card-header d-flex align-items-center justify-content-between">
                 <h2>{{ project.title }}</h2>
-                <RouterLink class="btn btn-primary" :to="{name: 'project-detail', params:{id: project.id}}">Vedi</RouterLink>
+                <RouterLink v-if="!isDetail" class="btn btn-primary" :to="{name: 'project-detail', params:{id: project.id}}">Vedi</RouterLink>
             </div>
             <div class="card-body clearfix">
                 <img v-if="project.image" :src="project.image" :alt="project.title" class="img-fluid float-start">

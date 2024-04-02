@@ -14,8 +14,8 @@ export default{
   }),
   methods:{
     getProject(){
-        this.isLoading = true;
-        // axios.get(`${defaultEndpoint}/1`)
+        this.isLoading = true;        
+        // Chiamiamo l'endopoint a cui aggiungiamo la query del singolo progetto
         axios.get(defaultEndpoint + this.$route.params.id)
         .then(res =>{this.project = res.data})
         .catch(err =>{console.error(err.message)})
@@ -31,7 +31,7 @@ export default{
 <!--? TEMPLATE -->
 <template>
     <AppLoader v-if="isLoading && !project"/>
-    <ProjectCard v-if="!isLoading && project" :project="project"/>
+    <ProjectCard v-if="!isLoading && project" :project="project" :isDetail="true"/>
 </template>
 
 <!--? STYLE -->
