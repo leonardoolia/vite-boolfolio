@@ -16,7 +16,7 @@ export default{
     getProject(){
         this.isLoading = true;        
         // Chiamiamo l'endopoint a cui aggiungiamo la query del singolo progetto
-        axios.get(defaultEndpoint + this.$route.params.id)
+        axios.get(defaultEndpoint + this.$route.params.slug)
         .then(res =>{this.project = res.data})
         .catch(err =>{console.error(err.message)})
         .then(() => {this.isLoading = false})
