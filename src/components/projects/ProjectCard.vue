@@ -27,8 +27,9 @@
 <template>
     <section id="projects-card">
         <div class="card mb-5">
-            <div class="card-header">
+            <div class="card-header d-flex align-items-center justify-content-between">
                 <h2>{{ project.title }}</h2>
+                <RouterLink class="btn btn-primary" :to="{name: 'project-detail', params:{id: project.id}}">Vedi</RouterLink>
             </div>
             <div class="card-body clearfix">
                 <img v-if="project.image" :src="project.image" :alt="project.title" class="img-fluid float-start">
