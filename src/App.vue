@@ -2,10 +2,11 @@
 <script>
 import AppHeader from './components/AppHeader.vue';
 import HomePage from './components/pages/HomePage.vue';
+import ContactUsPage from './components/pages/ContactUsPage.vue';
 
 export default{
   name: 'MyPortfolio',
-  components:{AppHeader, HomePage}
+  components:{AppHeader, HomePage, ContactUsPage}
 }
 </script>
 
@@ -13,7 +14,8 @@ export default{
 <template>
   <AppHeader />
   <main class="container mt-4">
-    <HomePage />
+      <!-- Contenuto pagina -->
+      <RouterView />
   </main>
 </template>
 
