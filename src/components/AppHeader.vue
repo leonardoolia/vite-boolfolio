@@ -17,10 +17,10 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <RouterLink class="nav-link" to="/">Home</RouterLink>
+          <RouterLink class="nav-link" :to="{name: 'home'}">Home</RouterLink>
         </li>        
         <li class="nav-item">
-          <RouterLink class="nav-link" to="/contact-us">Contact us</RouterLink>
+          <RouterLink class="nav-link" :to="{name: 'contact-us'}">Contact us</RouterLink>
         </li>        
       </ul>
     </div>
