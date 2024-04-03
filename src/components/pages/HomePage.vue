@@ -1,5 +1,6 @@
 <!--? SCRIPT -->
 <script>
+import { store } from '../../data/store';
 import ProjectsList from '../projects/ProjectsList.vue';
 import AppAlert from '../AppAlert.vue';
 import BasePagination from '../BasePagination.vue';
@@ -10,15 +11,15 @@ const defaultEndpoint = 'http://localhost:8000/api/projects/';
     name: 'HomePage',
     components:{ProjectsList, AppAlert, BasePagination},
     data: () => ({
+      store,
       projects: {
         data: [],
         links: []
-      }, 
-      isLoading: false, 
+      },
       isAlertOpen: false}),
     methods:{      
       fetchProjects(endpoint){
-        this.isLoading = true;
+        store.isLoading = true;
         axios.get(endpoint ?? defaultEndpoint)
         .then(res => {
           const {data, links} = res.data;
@@ -31,7 +32,7 @@ const defaultEndpoint = 'http://localhost:8000/api/projects/';
           this.isAlertOpen = true;
         })
         .then(() =>{
-          this.isLoading = false;
+          store.isLoading = false;
         })
       }      
     },
@@ -47,10 +48,11 @@ const defaultEndpoint = 'http://localhost:8000/api/projects/';
     <AppAlert :show="isAlertOpen" @close="isAlertOpen = false" @retry="fetchProjects"/>
     <AppLoader v-if="isLoading"/>
 
-    <div v-else>
+    
+    <div v-if="!store.isLoading">    
       <ProjectsList :projects="projects.data"/>
       <BasePagination :links="projects.links" @change-page="fetchProjects"/>
-  </div>
+    </div>
 </template>
 
 <!--? STYLE -->

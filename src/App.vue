@@ -1,12 +1,15 @@
 <!--? SCRIPT -->
 <script>
 import AppHeader from './components/AppHeader.vue';
-import HomePage from './components/pages/HomePage.vue';
-import ContactUsPage from './components/pages/ContactUsPage.vue';
+import AppLoader from './components/AppLoader.vue';
+import {store} from './data/store';
 
 export default{
   name: 'MyPortfolio',
-  components:{AppHeader, HomePage, ContactUsPage}
+  components:{AppHeader, AppLoader},
+  data: () => ({
+    store
+  })
 }
 </script>
 
@@ -15,6 +18,7 @@ export default{
   <AppHeader />
   <main class="container mt-4">
       <!-- Contenuto pagina -->
+      <AppLoader v-if="store.isLoading"/>
       <RouterView />
   </main>
 </template>

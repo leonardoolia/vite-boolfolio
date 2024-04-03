@@ -1,5 +1,6 @@
 <!--? SCRIPT -->
 <script>
+import { store } from '../../data/store';
 import axios from 'axios';
 import AppLoader from '../AppLoader.vue';
 import ProjectCard from '../projects/ProjectCard.vue';
@@ -9,17 +10,21 @@ export default{
   name: 'ProjectDetailPage',
   components: {ProjectCard, AppLoader},
   data: () => ({
+    store,
     project: null,
-    isLoading: false,
   }),
   methods:{
     getProject(){
-        this.isLoading = true;        
+        store.isLoading = true;        
         // Chiamiamo l'endopoint a cui aggiungiamo la query del singolo progetto
         axios.get(defaultEndpoint + this.$route.params.slug)
         .then(res =>{this.project = res.data})
-        .catch(err =>{console.error(err.message)})
-        .then(() => {this.isLoading = false})
+        .catch(err =>{
+          console.error(err.message);
+          // Reindirizziamo l'utente alla pagina 404
+          this.$router.push({name: 'not-found'})
+        })
+        .then(() => {store.isLoading = false})
     },
   },
   created(){
@@ -30,8 +35,8 @@ export default{
 
 <!--? TEMPLATE -->
 <template>
-    <AppLoader v-if="isLoading && !project"/>
-    <ProjectCard v-if="!isLoading && project" :project="project" :isDetail="true"/>
+    <AppLoader v-if="store.isLoading && !project"/>
+    <ProjectCard v-if="!store.isLoading && project" :project="project" :isDetail="true"/>
 </template>
 
 <!--? STYLE -->
