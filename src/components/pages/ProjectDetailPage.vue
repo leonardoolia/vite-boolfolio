@@ -2,13 +2,12 @@
 <script>
 import { store } from '../../data/store';
 import axios from 'axios';
-import AppLoader from '../AppLoader.vue';
 import ProjectCard from '../projects/ProjectCard.vue';
 const defaultEndpoint = 'http://localhost:8000/api/projects/';
 
 export default{
   name: 'ProjectDetailPage',
-  components: {ProjectCard, AppLoader},
+  components: {ProjectCard},
   data: () => ({
     store,
     project: null,
@@ -35,7 +34,6 @@ export default{
 
 <!--? TEMPLATE -->
 <template>
-    <AppLoader v-if="store.isLoading && !project"/>
     <ProjectCard v-if="!store.isLoading && project" :project="project" :isDetail="true"/>
 </template>
 
