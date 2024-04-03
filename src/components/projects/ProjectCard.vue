@@ -34,8 +34,21 @@
             <div class="card-body clearfix">
                 <img v-if="project.image" :src="project.image" :alt="project.title" class="img-fluid float-start">
 
+                <!--! Tag -->
+                <!-- <span v-if="project.type" class="badge" :style="{backgroundColor: project.type.color}">{{ project.type.label }}</span> -->
+
                 <!-- Se siamo nel dettaglio mi mostra l'intera descrizione del progetto, altrimenti mi mostra l'abstract -->
                 <p>{{isDetail ? project.description : abstract}}</p>
+
+                <!--! Technologies -->
+                <!-- <div v-if="project.technologies.length">
+                    <span v-for="technology in project.technologies" :key="technology.id" class="badge rounded-pill" :class="`tect-bg-${technology.color}`">
+                        {{ technology.label }}
+                    </span>
+                </div> -->
+
+
+
             </div>
             <div class="card-footer d-flex justify-content-between">
                 <small><strong>Status:</strong> {{ project.status }}</small>
