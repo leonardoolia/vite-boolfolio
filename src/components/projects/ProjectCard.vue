@@ -41,7 +41,7 @@
                 <p>{{isDetail ? project.description : abstract}}</p>
 
                 <!--! Technologies -->
-                <!-- <div v-if="project.technologies.length">
+                <!-- <div v-if="project.technologies?.length">
                     <span v-for="technology in project.technologies" :key="technology.id" class="badge rounded-pill" :class="`tect-bg-${technology.color}`">
                         {{ technology.label }}
                     </span>
